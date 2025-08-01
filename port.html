@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saketh Ram Kalavakuntla | AI Engineer Portfolio</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00f5ff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #888;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #00f5ff;
+    }
+
+    .main {
+      padding-top: 80px;
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: 2rem 0;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #00f5ff, #ff00ff, #ffff00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: brightness(1); }
+      to { filter: brightness(1.2); }
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.5rem;
+      color: #888;
+      margin-bottom: 1rem;
+    }
+
+    .summary {
+      color: #aaa;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      background: transparent;
+      border: 2px solid #00f5ff;
+      color: #00f5ff;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #00f5ff;
+      color: #0a0a0a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+    }
+
+    .btn.secondary {
+      border-color: #ff00ff;
+      color: #ff00ff;
+    }
+
+    .btn.secondary:hover {
+      background: #ff00ff;
+      color: #0a0a0a;
+      box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(135deg, #00f5ff, #ff00ff);
+      z-index: 1001;
+      transition: width 0.1s ease;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: #888;
+      font-size: 1.2rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid #333;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      border-color: #00f5ff;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 245, 255, 0.1);
+    }
+
+    .contact-card h3 {
+      color: #00f5ff;
+      margin-bottom: 1rem;
+    }
+
+    .contact-card a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .contact-card a:hover {
+      color: #00f5ff;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+
+      .hamburger {
+        width: 25px;
+        height: 3px;
+        background: #fff;
+        transition: all 0.3s ease;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress"></div>
+
+  <nav class="nav">
+    <div class="nav-container">
+      <div class="logo">Saketh</div>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-menu">
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <!-- Home Section -->
+    <section class="section active" id="home">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-content">
+            <h1>Saketh Ram Kalavakuntla</h1>
+            <p class="subtitle">Machine Learning Engineer | GenAI Enthusiast | NLP Specialist</p>
+            <p class="summary">
+              Building scalable GenAI, NLP, and ML systems using PyTorch, Hugging Face, and AWS. Passionate about real-world impact through production-ready AI pipelines and LLM-integrated apps.
+            </p>
+            <div class="cta-buttons">
+              <a href="#projects" class="btn" id="view-projects-btn">View Projects</a>
+              <a href="Saketh_Resume.pdf" download class="btn secondary">Download Resume</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Placeholder Experience and Projects Sections -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <h2>Experience</h2>
+          <p>This is a placeholder for your experience section.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2>Projects</h2>
+          <p>This is a placeholder for your project showcase.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Get In Touch</h2>
+          <p>Let's build something amazing together</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Email</h3>
+            <a href="mailto:sakethram8524@gmail.com">sakethram8524@gmail.com</a>
+          </div>
+          <div class="contact-card">
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/saketh-ram-kalavakuntla/" target="_blank">Connect with me</a>
+          </div>
+          <div class="contact-card">
+            <h3>GitHub</h3>
+            <a href="https://github.com/SakethRamkalavakuntla/" target="_blank">View my code</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+    const scrollProgress = document.querySelector('.scroll-progress');
+    const navLinksContainer = document.querySelector('.nav-links');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        sections.forEach(s => s.classList.remove('active'));
+        targetSection.classList.add('active');
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+        navLinksContainer.classList.remove('active');
+      });
+    });
+
+    document.getElementById('view-projects-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetSection = document.getElementById('projects');
+      sections.forEach(s => s.classList.remove('active'));
+      navLinks.forEach(l => l.classList.remove('active'));
+      targetSection.classList.add('active');
+      document.querySelector(`.nav-link[href="#projects"]`).classList.add('active');
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = scrollPercent + '%';
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${section.id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+        if (section.getBoundingClientRect().top < window.innerHeight - 100) {
+          section.classList.add('active');
+        }
+      });
+    });
+
+    mobileMenu.addEventListener('click', () => {
+      navLinksContainer.classList.toggle('active');
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
+

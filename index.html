@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saketh Ram Kalavakuntla | AI Engineer Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00f5ff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #888;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #00f5ff;
+    }
+
+    /* Main Content */
+    .main {
+      padding-top: 80px;
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: 2rem 0;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #00f5ff, #ff00ff, #ffff00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: brightness(1); }
+      to { filter: brightness(1.2); }
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.5rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      background: transparent;
+      border: 2px solid #00f5ff;
+      color: #00f5ff;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #00f5ff;
+      color: #0a0a0a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+    }
+
+    .btn.secondary {
+      border-color: #ff00ff;
+      color: #ff00ff;
+    }
+
+    .btn.secondary:hover {
+      background: #ff00ff;
+      color: #0a0a0a;
+      box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      margin-top: 3rem;
+    }
+
+    .experience-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #00f5ff, #ff00ff);
+      transform: translateX(-50%);
+    }
+
+    .experience-item {
+      position: relative;
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .experience-item:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .experience-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .experience-content {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid #333;
+      width: 45%;
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .experience-content:hover {
+      border-color: #00f5ff;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 245, 255, 0.1);
+    }
+
+    .experience-content::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 15px solid transparent;
+      transform: translateY(-50%);
+    }
+
+    .experience-item:nth-child(odd) .experience-content::before {
+      right: -30px;
+      border-left-color: #333;
+    }
+
+    .experience-item:nth-child(even) .experience-content::before {
+      left: -30px;
+      border-right-color: #333;
+    }
+
+    .experience-content:hover::before {
+      border-left-color: #00f5ff;
+      border-right-color: #00f5ff;
+    }
+
+    .experience-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background: #00f5ff;
+      border-radius: 50%;
+      border: 4px solid #0a0a0a;
+      z-index: 10;
+    }
+
+    .experience-content h3 {
+      color: #00f5ff;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-content .company {
+      color: #ff00ff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-content .duration {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .experience-highlights {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .experience-highlights li {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    .experience-highlights li::before {
+      content: '▸';
+      color: #00f5ff;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .experience-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: rgba(0, 245, 255, 0.1);
+      color: #00f5ff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(0, 245, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .experience-timeline::before {
+        left: 30px;
+      }
+
+      .experience-item {
+        flex-direction: column !important;
+        align-items: flex-start;
+      }
+
+      .experience-content {
+        width: calc(100% - 60px);
+        margin-left: 60px;
+      }
+
+      .experience-content::before {
+        left: -30px !important;
+        right: auto !important;
+        border-right-color: #333 !important;
+        border-left-color: transparent !important;
+      }
+
+      .experience-dot {
+        left: 30px;
+      }
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid #333;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: #00f5ff;
+      box-shadow: 0 20px 40px rgba(0, 245, 255, 0.1);
+    }
+
+    .project-card:hover::before {
+      left: 100%;
+    }
+
+    .project-card h3 {
+      color: #00f5ff;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tech-tag {
+      background: rgba(0, 245, 255, 0.1);
+      color: #00f5ff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(0, 245, 255, 0.3);
+    }
+
+    .project-card p {
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid #333;
+      color: #888;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      border-color: #00f5ff;
+      color: #00f5ff;
+      background: rgba(0, 245, 255, 0.1);
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: #888;
+      font-size: 1.2rem;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid #333;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      border-color: #00f5ff;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 245, 255, 0.1);
+    }
+
+    .contact-card h3 {
+      color: #00f5ff;
+      margin-bottom: 1rem;
+    }
+
+    .contact-card a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .contact-card a:hover {
+      color: #00f5ff;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .hamburger {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Scroll Progress */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(135deg, #00f5ff, #ff00ff);
+      z-index: 1001;
+      transition: width 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress"></div>
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <div class="logo">Saketh</div>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-menu">
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <!-- Home Section -->
+    <section class="section active" id="home">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-content">
+            <h1>Saketh Ram Kalavakuntla</h1>
+            <p class="subtitle">Machine Learning Engineer | GenAI Enthusiast | NLP Specialist</p>
+            <div class="cta-buttons">
+              <a href="#projects" class="btn">View Projects</a>
+              <a href="Saketh_Resume.pdf" download class="btn secondary">Download Resume</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <h2>Experience</h2>
+          <p>My professional journey in AI and machine learning</p>
+        </div>
+        
+        <div class="experience-timeline">
+          <div class="experience-item">
+            <div class="experience-content">
+              <h3>Data Scientist Intern</h3>
+              <div class="company">G-Technologies</div>
+              <div class="duration">Jan 2023 - Dec 2024</div>
+              <ul class="experience-highlights">
+                <li>Designed GenAI-enabled ECG interpretation system combining EfficientNet image classification with transformer-generated diagnostic summaries</li>
+                <li>Built modular PyTorch and Hugging Face pipeline for preprocessing, classification, and narrative generation</li>
+                <li>Managed experiments using MLflow for reproducibility and structured model versioning</li>
+                <li>Integrated OpenAI GPT-3.5 APIs for automated text summarization and diagnostic reports</li>
+                <li>Contributed to internal GenAI experimentation including fine-tuned LLMs and vector search components</li>
+              </ul>
+              <div class="experience-skills">
+                <span class="skill-tag">PyTorch</span>
+                <span class="skill-tag">Hugging Face</span>
+                <span class="skill-tag">EfficientNet</span>
+                <span class="skill-tag">MLflow</span>
+                <span class="skill-tag">OpenAI GPT-3.5</span>
+                <span class="skill-tag">GenAI</span>
+              </div>
+            </div>
+            <div class="experience-dot"></div>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-content">
+              <h3>Machine Learning Engineer</h3>
+              <div class="company">The Cigna Group</div>
+              <div class="duration">Feb 2020 - Mar 2023</div>
+              <ul class="experience-highlights">
+                <li>Developed and deployed ML models using TensorFlow, PyTorch, and Scikit-learn for healthcare workflows</li>
+                <li>Built scalable ML pipelines encompassing data ingestion, training, validation, and deployment</li>
+                <li>Designed real-time inference services using REST APIs on AWS for production applications</li>
+                <li>Optimized GPU workloads and containerized ML solutions using Docker</li>
+                <li>Implemented model monitoring with MLflow and collaborated cross-functionally on business alignment</li>
+              </ul>
+              <div class="experience-skills">
+                <span class="skill-tag">TensorFlow</span>
+                <span class="skill-tag">PyTorch</span>
+                <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">MLflow</span>
+              </div>
+            </div>
+            <div class="experience-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2>Projects</h2>
+          <p>Building intelligent solutions with cutting-edge AI technologies</p>
+        </div>
+        
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="nlp">NLP</button>
+          <button class="filter-btn" data-filter="cv">Computer Vision</button>
+          <button class="filter-btn" data-filter="ml">Machine Learning</button>
+          <button class="filter-btn" data-filter="genai">GenAI</button>
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card" data-category="nlp genai">
+            <h3>DocuQuery – Internal Document Q&A Chatbot</h3>
+            <div class="project-tech">
+              <span class="tech-tag">Flask</span>
+              <span class="tech-tag">LangChain</span>
+              <span class="tech-tag">FAISS</span>
+              <span class="tech-tag">OpenAI</span>
+              <span class="tech-tag">RAG</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+            <p>Built a PDF-based RAG system using LangChain and OpenAI to enable semantic search and contextual Q&A from internal documents.</p>
+          </div>
+
+          <div class="project-card" data-category="genai nlp">
+            <h3>SmartCover AI</h3>
+            <div class="project-tech">
+              <span class="tech-tag">Flask</span>
+              <span class="tech-tag">LLaMA 3</span>
+              <span class="tech-tag">LangChain</span>
+              <span class="tech-tag">ChromaDB</span>
+              <span class="tech-tag">OpenAI</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+            <p>Developed a GenAI tool to generate personalized cover letters by aligning resumes with scraped job descriptions using LangChain, LLaMA 3 and ChromaDB.</p>
+          </div>
+
+          <div class="project-card" data-category="cv genai">
+            <h3>Photo Memories App – CLIP-Powered Image-to-Text Retrieval</h3>
+            <div class="project-tech">
+              <span class="tech-tag">CLIP</span>
+              <span class="tech-tag">Gradio</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">NumPy</span>
+              <span class="tech-tag">OpenAI</span>
+            </div>
+            <p>Created a memory slideshow generator that retrieves images from user uploads based on text prompts using CLIP embeddings.</p>
+          </div>
+
+          <div class="project-card" data-category="nlp ml">
+            <h3>Multi-Agent Book Genre Classification Bot</h3>
+            <div class="project-tech">
+              <span class="tech-tag">Flask</span>
+              <span class="tech-tag">BERT</span>
+              <span class="tech-tag">Hugging Face</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+            <p>Fine-tuned a BERT model to classify book summaries by genre; built RESTful Flask APIs and deployed on AWS.</p>
+          </div>
+
+          <div class="project-card" data-category="ml">
+            <h3>Walmart Sales Forecasting</h3>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Prophet</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">Power BI</span>
+            </div>
+            <p>Developed a forecasting model using Prophet to predict Walmart sales trends and visualized insights through Power BI dashboards.</p>
+          </div>
+
+          <div class="project-card" data-category="nlp">
+            <h3>Metaphor Detection – Linguistic Pattern Classifier</h3>
+            <div class="project-tech">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">DistilBERT</span>
+              <span class="tech-tag">NLP</span>
+              <span class="tech-tag">Hugging Face</span>
+            </div>
+            <p>Trained a DistilBERT model to classify metaphorical expressions in text for improved linguistic understanding and pattern detection.</p>
+          </div>
+
+          <div class="project-card" data-category="cv">
+            <h3>Plant Disease Detection</h3>
+            <div class="project-tech">
+              <span class="tech-tag">CNN</span>
+              <span class="tech-tag">ResNet</span>
+              <span class="tech-tag">Streamlit</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+            <p>Used deep learning with ResNet to identify plant diseases from leaf images and deployed the model as a Streamlit web app on AWS.</p>
+          </div>
+
+          <div class="project-card" data-category="cv">
+            <h3>Crop Row Detection</h3>
+            <div class="project-tech">
+              <span class="tech-tag">U-Net</span>
+              <span class="tech-tag">LinkNet</span>
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">OpenCV</span>
+            </div>
+            <p>Performed segmentation of crop rows using U-Net and LinkNet architectures to aid in autonomous agricultural machinery.</p>
+          </div>
+
+          <div class="project-card" data-category="ml">
+            <h3>Rainfall Prediction App</h3>
+            <div class="project-tech">
+              <span class="tech-tag">XGBoost</span>
+              <span class="tech-tag">Flask</span>
+              <span class="tech-tag">Scikit-learn</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+            <p>Built a rainfall prediction web app using XGBoost and Flask, deployed on AWS with additional weather-related features.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Get In Touch</h2>
+          <p>Let's build something amazing together</p>
+        </div>
+        
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Email</h3>
+            <a href="mailto:sakethram8524@gmail.com">sakethram8524@gmail.com</a>
+          </div>
+          <div class="contact-card">
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/saketh-ram-kalavakuntla/" target="_blank">Connect with me</a>
+          </div>
+          <div class="contact-card">
+            <h3>GitHub</h3>
+            <a href="https://github.com/SakethRamkalavakuntla/" target="_blank">View my code</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Smooth scrolling and navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+    const scrollProgress = document.querySelector('.scroll-progress');
+
+    // Navigation click handlers
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        // Update active nav link
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        
+        // Show target section
+        sections.forEach(s => s.classList.remove('active'));
+        targetSection.classList.add('active');
+        
+        // Scroll to section
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Project filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        
+        // Update active filter button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Filter projects
+        projectCards.forEach(card => {
+          const categories = card.dataset.category.split(' ');
+          if (filter === 'all' || categories.includes(filter)) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeIn 0.5s ease';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Mobile menu toggle
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const navLinksContainer = document.querySelector('.nav-links');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinksContainer.classList.toggle('active');
+    });
+
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = scrollPercent + '%';
+    });
+
+    // Add fade in animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
